@@ -1,0 +1,185 @@
+:root {
+    /* Theme Variables */
+    --glass-bg: rgba(20, 20, 20, 0.75); 
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: #a3a3a3;
+    --primary-btn: #ffffff;
+    --primary-btn-text: #000000;
+    
+    /* Validation Colors */
+    --error-color: #ef4444;
+    --error-bg: rgba(127, 29, 29, 0.5);
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    
+    --radius: 12px;
+    --input-h: 48px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body {
+    background-color: #000000; /* Fallback */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* --- BACKGROUND VIDEO FIX --- */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; 
+    opacity: 0.6;
+    pointer-events: none; /* CRITICAL: Allows clicks to pass through video */
+}
+
+/* --- Main Content --- */
+.main-content {
+    position: relative;
+    z-index: 10; /* Ensures form is above video */
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header { text-align: center; margin-bottom: 25px; }
+.page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 5px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+.page-header p { color: rgba(255,255,255,0.8); }
+
+/* --- Glass Card --- */
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    width: 100%;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Toggle Switch --- */
+.auth-switch {
+    background: rgba(0,0,0,0.3);
+    border-radius: 30px;
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 25px auto;
+    padding: 4px;
+    border: 1px solid var(--glass-border);
+}
+.switch-btn {
+    padding: 6px 24px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: 0.3s;
+}
+.switch-btn.active { background: rgba(255,255,255,0.15); color: white; font-weight: 600; }
+
+/* --- Form Elements --- */
+.form-grid { display: grid; gap: 14px; }
+.row-2-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.row-phone { display: grid; grid-template-columns: 100px 1fr; gap: 14px; }
+.row-3-col { display: grid; grid-template-columns: 1.2fr 1.2fr 0.8fr; gap: 10px; }
+
+.input-group { position: relative; }
+
+input, select, textarea {
+    width: 100%;
+    height: var(--input-h);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: 10px;
+    padding: 0 16px;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.2s;
+}
+
+textarea { height: auto; padding-top: 12px; resize: none; }
+select { cursor: pointer; }
+option { background-color: #1a1a1a; color: white; }
+
+input:focus, select:focus, textarea:focus {
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.1);
+}
+
+/* Icons */
+.icon-left { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.has-icon input { padding-left: 40px; }
+.toggle-pass { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); cursor: pointer; }
+
+/* Gender */
+.gender-row { display: flex; gap: 15px; padding: 5px 0; }
+.gender-label { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-muted); cursor: pointer; }
+.gender-label input { width: 16px; height: 16px; accent-color: white; }
+
+/* Errors */
+.input-group.error input, .input-group.error select { border-color: var(--error-color); background: rgba(239, 68, 68, 0.15); }
+.alert-box {
+    background: var(--error-bg); border: 1px solid var(--error-color); color: #ffcccc;
+    padding: 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 15px; display: none;
+}
+.alert-box ul { padding-left: 20px; }
+
+/* Password Strength */
+.strength-meter { height: 3px; background: rgba(255,255,255,0.1); margin-top: 6px; border-radius: 2px; overflow: hidden; }
+.strength-bar { height: 100%; width: 0%; transition: 0.3s; }
+.strength-text { text-align: right; font-size: 0.7rem; color: var(--text-muted); margin-top: 3px; min-height: 15px; }
+
+/* Submit Button */
+.btn-submit {
+    width: 100%; height: 48px; background: var(--primary-btn); color: var(--primary-btn-text);
+    border: none; border-radius: 10px; font-weight: 600; margin-top: 15px; cursor: pointer;
+    transition: 0.2s;
+}
+.btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,255,255,0.15); }
+.btn-submit:disabled { background: #444; color: #888; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* Socials & Terms */
+.divider { display: flex; align-items: center; margin: 20px 0 15px 0; color: rgba(255,255,255,0.3); font-size: 0.75rem; font-weight: 600; }
+.divider::before, .divider::after { content:""; flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+.divider span { margin: 0 10px; }
+
+.social-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+.social-btn {
+    background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); height: 40px;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-size: 0.85rem; cursor: pointer; transition: 0.2s;
+}
+.social-btn:hover { background: rgba(255,255,255,0.1); }
+
+.terms { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); }
+.terms a { color: white; text-decoration: underline; }
+.terms input { width: 14px; height: 14px; margin: 0; }
+
+.hidden { display: none; }
+.signin-view { text-align: center; padding: 50px 0; }
+
+@media(max-width: 480px) {
+    .row-2-col, .row-3-col, .row-phone { grid-template-columns: 1fr; }
+}

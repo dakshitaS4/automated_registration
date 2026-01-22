@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Registration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="171944-846113548.mp4" type="video/mp4">
+    </video>
+
+    <div class="main-content">
+        <div class="page-header">
+            <h1>Join Our Platform</h1>
+            <p>Create your account in just a few simple steps</p>
+        </div>
+
+        <div class="glass-container">
+            
+            <div class="auth-switch">
+                <div class="switch-btn active" id="btn-signup">Sign up</div>
+                <div class="switch-btn" id="btn-signin">Sign in</div>
+            </div>
+
+            <div id="signup-section">
+                
+                <div class="alert-box" id="topAlert">
+                    <strong><i class="fa-solid fa-circle-exclamation"></i> Action Required:</strong>
+                    <ul id="alertList"></ul>
+                </div>
+
+                <form id="regForm" novalidate>
+                    <div class="form-grid">
+                        
+                        <div class="row-2-col">
+                            <div class="input-group">
+                                <input type="text" id="firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group has-icon">
+                            <i class="fa-regular fa-envelope icon-left"></i>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="row-phone">
+                            <div class="input-group">
+                                <select id="country" required>
+                                    <option value="">Code</option>
+                                    <option value="India">🇮🇳 +91</option>
+                                    <option value="USA">🇺🇸 +1</option>
+                                    <option value="UK">🇬🇧 +44</option>
+                                </select>
+                            </div>
+                            <div class="input-group has-icon">
+                                <i class="fa-solid fa-phone icon-left"></i>
+                                <input type="number" id="phone" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+
+                        <div class="gender-row">
+                            <label class="gender-label"><input type="radio" name="gender" value="Male" required> Male</label>
+                            <label class="gender-label"><input type="radio" name="gender" value="Female"> Female</label>
+                            <label class="gender-label"><input type="radio" name="gender" value="Other"> Other</label>
+                        </div>
+
+                        <div class="input-group">
+                            <textarea id="address" rows="1" placeholder="Address"></textarea>
+                        </div>
+
+                        <div class="row-3-col">
+                            <div class="input-group">
+                                <select id="state" required disabled>
+                                    <option value="">Select Country First</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select id="city" required disabled>
+                                    <option value="">Select State First</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <input type="number" id="age" placeholder="Age">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="password" placeholder="Password" required>
+                            <i class="fa-solid fa-eye-slash toggle-pass" onclick="togglePass('password', this)"></i>
+                        </div>
+                        <div>
+                            <div class="strength-meter"><div class="strength-bar" id="strengthBar"></div></div>
+                            <div class="strength-text" id="strengthText"></div>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                            <i class="fa-solid fa-eye-slash toggle-pass" onclick="togglePass('confirmPassword', this)"></i>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn-submit" disabled>Create account</button>
+                    </div>
+
+                    <div class="divider"><span>OR SIGN IN WITH</span></div>
+                    <div class="social-row">
+                        <div class="social-btn"><i class="fa-brands fa-google"></i> Google</div>
+                        <div class="social-btn"><i class="fa-brands fa-apple"></i> Apple</div>
+                    </div>
+
+                    <div class="terms">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">By creating an account, you agree to our <a href="#">Terms & Conditions</a></label>
+                    </div>
+                </form>
+            </div>
+
+            <div id="signin-section" class="hidden signin-view">
+                <h2>Welcome Back</h2>
+                <p style="color:var(--text-muted); margin-top:10px;">Sign in functionality coming soon.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
